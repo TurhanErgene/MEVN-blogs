@@ -52,6 +52,7 @@ export default {
       const reponse = await fetch(`${API_URL}/${_id}`, {
         method: "DELETE",
       });
+      getPosts();
     }
     return {
       posts,
