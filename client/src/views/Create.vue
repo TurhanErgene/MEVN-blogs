@@ -1,9 +1,15 @@
 <template>
-  <h1>Create Page</h1>
+  <post-form />
+  <!-- buyuk harflerle baslayinca bu sekilde de kullanilabiliyor -->
 </template>
 
 <script>
-export default {};
+import PostForm from "../components/PostForm";
+export default {
+  components: {
+    PostForm,
+  },
+};
 </script>
 
 <style>

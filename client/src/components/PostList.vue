@@ -46,7 +46,7 @@ export default {
     async function getPosts() {
       const response = await fetch(API_URL);
       const json = await response.json();
-      posts.value = json;
+      posts.value = json; //posts statine tanimla: ref([])
     }
     async function removePost(_id) {
       const reponse = await fetch(`${API_URL}/${_id}`, {
