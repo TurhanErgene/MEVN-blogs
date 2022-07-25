@@ -1,5 +1,5 @@
 <template>
-  <h1>Update Page</h1>
+  <PostForm :post="post" :submitForm="updatePost"></PostForm>
 </template>
 
 <script>
@@ -23,11 +23,42 @@ export default {
       creator: "",
     });
 
+    onMounted(() => {
+      getPost();
+    });
+
     async function getPost() {
       const { id } = route.params;
-      console.log(id);
+      const response = await fetch(`${API_URL}/${id}`);
+      const json = await response.json();
+      post.value = json;
     }
-    return getPost();
+
+    async function updatePost() {
+      const { id } = route.params;
+      const response = await fetch(`${API_URL}/${id}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          title: post.value.title,
+          content: post.value.content,
+          creator: post.value.creator,
+        }),
+      });
+
+      //unnecessary
+      const json = await response.json();
+
+      router.push({
+        name: "Home",
+      });
+    }
+    return {
+      post,
+      updatePost,
+    };
   },
 };
 </script>

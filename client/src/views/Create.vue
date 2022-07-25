@@ -34,7 +34,7 @@ export default {
             creator: post.creator,
           }),
         });
-        
+
         //unnecessary
         const json = await response.json();
 
