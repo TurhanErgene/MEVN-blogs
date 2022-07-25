@@ -1,6 +1,6 @@
 <template>
-  <post-form :post="post" :submitForm="createPost" />
-  <!-- buyuk harflerle baslayinca bu sekilde de kullanilabiliyor -->
+  <PostForm :post="post" :submitForm="createPost" />
+  <!-- `post-form` buyuk harflerle baslayinca bu sekilde de kullanilabiliyor -->
 </template>
 
 <script>

@@ -15,7 +15,12 @@
         </div>
         <div class="card">
           <footer class="card-footer">
-            <button class="card-footer-item button is-warning">Edit</button>
+            <button
+              @click="editPost(post._id)"
+              class="card-footer-item button is-warning"
+            >
+              Edit
+            </button>
             <button
               @click="removePost(post._id)"
               class="card-footer-item button is-danger"
@@ -30,11 +35,12 @@
 </template>
 
 <script>
-import { ref } from "vue";
-import { onMounted } from "vue";
+import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
+    const router = useRouter();
     const posts = ref([]);
 
     const API_URL = "http://localhost:5000/posts";
@@ -49,14 +55,21 @@ export default {
       posts.value = json; //posts statine tanimla: ref([])
     }
     async function removePost(_id) {
-      const reponse = await fetch(`${API_URL}/${_id}`, {
+      await fetch(`${API_URL}/${_id}`, {
         method: "DELETE",
       });
       getPosts();
     }
+    async function editPost(_id) {
+      router.push({
+        name: "Update",
+        params: { id: _id },
+      });
+    }
     return {
       posts,
       removePost,
+      editPost,
     };
   },
 };
